@@ -3,12 +3,12 @@
 # apt-get update if sudo
 # prepend the vimrc
 #
-#
+# Make sure the files have not already been prepended.
 #
 
 MY_DEFAULTS="$(HOME)/.config/my_defaults"
 
-all:
+all: update prepent_vimrc prepend_bashrc
 	# This is the default
 	echo "Nothing done"
 
@@ -22,12 +22,14 @@ update:
 
 prepend_vimrc:
 	# Prepend the vim file with the vimrc file
-	":so $(MY_DEFAULTS)/vimrc" > tmp_file
+	echo ":so $(MY_DEFAULTS)/vimrc" > tmp_file
 	cat ~/.vimrc >> tmp_file
 	cp tmp_file ~/.vimrc
+    # Install the vim pluggins
+    vim +PluginInstall +qall
 
 prepend_bashrc:
 	# Prepend the bashrc
-	"source $(MY_DEFAULTS)/bashrc" > tmp_file
+	echo "source $(MY_DEFAULTS)/bashrc" > tmp_file
 	cat ~/.bashrc >> tmp_file
 	cp tmp_file ~/.bashrc
