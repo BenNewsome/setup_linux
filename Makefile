@@ -4,6 +4,7 @@
 # prepend the vimrc
 #
 # Make sure the files have not already been prepended.
+# Make sure vim8 is installed. Make it from source if not.
 #
 
 MY_DEFAULTS="$(HOME)/.config/my_defaults"
