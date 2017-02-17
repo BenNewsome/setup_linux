@@ -11,6 +11,7 @@ SHELL:=/bin/bash
 shell:=/bin/bash
 MY_DEFAULTS=$(HOME)/.config/my_defaults
 VIMFILE=$(HOME)/.vimrc
+VIMVERSION:=$(shell vim --version | head -1 | grep -o '[0-9]\.[0-9]')
 
 
 all: install install_vim prepend_vimrc prepend_bashrc
@@ -44,8 +45,7 @@ install_vundle:
 
 install_vim:
 	# Install vim8 manually if not installed
-	echo (vim --version | head -1 | grep -o '[0-9]\.[0-9]') >= 8.0" | bc -l 
-	if [ $(shell echo "$(vim --version | head -1 | grep -o '[0-9]\.[0-9]') >= 8.0" | bc -l ) ]; then \
+	if [ $(shell echo $(VIMVERSION) '<' 8.0 | bc -l ) = 1 ]; then \
 		 echo "VIM 8 is not installed and is needed"; \
 		 exit_the_script; \
 	fi
