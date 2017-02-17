@@ -14,7 +14,7 @@ VIMFILE=$(HOME)/.vimrc
 VIMVERSION:=$(shell vim --version | head -1 | grep -o '[0-9]\.[0-9]')
 
 
-all: install install_vim prepend_vimrc prepend_bashrc
+all: install update install_vim prepend_vimrc prepend_bashrc
 	# This is the default
 	echo "Nothing done"
 
@@ -22,12 +22,18 @@ vim: install_vim prepend_vimrc install_vindle
 
 install:
 	# Confirm git is installed then pull the defaults.
-	command -v git >/dev/null 2>&1 || { echo >&2 "I require git but it's not installed.  Aborting."; exit 1; }
-	mkdir -p $(HOME)/.config
-	git clone https://github.com/BenNewsome/setup_linux.git $(MY_DEFAULTS)
+	#
+	if ! test -d $(MY_DEFAULTS); then \
+		command -v git >/dev/null 2>&1 || { echo >&2 "I require git but it's not installed.  Aborting."; exit 1; };  \
+		mkdir -p $(HOME)/.config; \
+		git clone https://github.com/BenNewsome/setup_linux.git $(MY_DEFAULTS); \
+	else \
+		echo "folder already installed"; \
+	fi
+
 
 update:
-	cd $(HOME)/.config && git pull https://github.com/BenNewsome/setup_linux.git $(MY_DEFAULTS)
+	cd $(MY_DEFAULTS) && git pull;
 
 
 # Prepend the vim file with the vimrc file
