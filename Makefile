@@ -12,11 +12,11 @@ shell:=/bin/bash
 MY_DEFAULTS=$(HOME)/.config/my_defaults
 VIMFILE=$(HOME)/.vimrc
 VIMVERSION:=$(shell vim --version | head -1 | grep -o '[0-9]\.[0-9]')
+VUNDLE:=$(HOME)/.vim/bundle/Vundle.vim
 
 
-all: install update install_vim prepend_vimrc prepend_bashrc
+all: install update install_vim prepend_vimrc install_vundle prepend_bashrc
 	# This is the default
-	echo "Nothing done"
 
 vim: install_vim prepend_vimrc install_vindle
 
@@ -46,7 +46,11 @@ prepend_vimrc:
 	fi
 
 install_vundle:
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	if ! test -d $(VUNDLE); then \
+		git clone https://github.com/VundleVim/Vundle.vim.git $(VUNDLE); \
+	else \
+		echo "Vundle is already installed"; \
+	fi
 	vim +PluginInstall +qall 
 
 install_vim:
