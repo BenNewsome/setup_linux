@@ -1,2 +1,1 @@
-:so /home/ben/.config/my_defaults/vimrc
-" This is a default vimrc
+"so /home/ben/.config/my_defaults/vimrc"
