@@ -43,6 +43,7 @@ prepend_vimrc:
 		echo ":so $(MY_DEFAULTS)/vimrc" > tmp_file ;\
 		cat $(VIMFILE) >> tmp_file ;\
 		cp tmp_file $(VIMFILE) ;\
+		rm -f tmp_file ;\
 	fi
 
 install_vundle:
@@ -66,3 +67,4 @@ prepend_bashrc:
 	echo "source $(MY_DEFAULTS)/bashrc" > tmp_file
 	cat ~/.bashrc >> tmp_file
 	cp tmp_file ~/.bashrc
+	rm tmp_file
