@@ -1,17 +1,21 @@
 setup_linux
 -----------------------
-This progamme is designed to install all the programes I like on new instalations of ubuntu or in future other distros.
+This allows easy instalation of all my bash and vim settings with two commands.
 
-It adds universal bash aliases.
-It installes vim plugins like to use.
+It adds my universal bash aliases and options.
+It downloads and installes vim plugins and settings like to use.
 
-It might do other things in the future.
+
+---------------------------
+Install
+`wget linux.newsome.me.uk`
+`make`
 
 -----------------------------
 To-do
 
-* Move to a rsync approach so that I can update settings easier.
-* Consider changing from python to bash so I don't need python installed to run.
+Install vim 8.0 from source if not already installed if I find this needed.
+
 
 
 
