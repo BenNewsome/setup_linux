@@ -104,3 +104,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Python linter settings for python 3 forward compatability.
+let g:ale_python_pylint_options = '--py3k --enable=all'
+
