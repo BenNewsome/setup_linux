@@ -72,9 +72,9 @@ endif
 " Run command for python files.
 "nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 autocmd FileType python nmap <F9> :!ipython %<cr>
-autocmd FileType python nmap <F10> :!pytest %<cr>
-autocmd FileType latex nmap <F9> :!pdflatex %<cr>
-autocmd FileType tex nmap <F9> :!pdflatex %<cr>
+autocmd FileType python nmap <F10> :!py.test %<cr>
+autocmd FileType latex nmap <F9> :!make<cr>
+autocmd FileType tex nmap <F9> :!make<cr>
 " Show the filename in the terminal top info:
 let &titlestring = $USER . "@" . hostname() . " " . expand("%:p")
 if &term == "screen"
