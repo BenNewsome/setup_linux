@@ -56,7 +56,7 @@ autocmd Filetype fortran let &colorcolumn=join(range(79,85),",")
 autocmd Filetype python let &colorcolumn=join(range(79,80),",")
 set number
 let g:tex_fold_enabled=1
-autocmd Filetype fortran setlocal expandtab tabstop=3 shiftwidth=3 
+autocmd Filetype fortran setlocal expandtab tabstop=3 shiftwidth=3 ignorecase
 autocmd Filetype python setlocal nofoldenable
 autocmd Filetype tex setlocal foldmethod=syntax spell
 autocmd Filetype bib setlocal foldmethod=syntax
