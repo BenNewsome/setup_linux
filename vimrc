@@ -34,6 +34,10 @@
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
+
+" Required by YouCompleteMe
+set encoding=utf-8
 
 
 " Speed up jedi autocomplete
@@ -52,8 +56,7 @@ filetype on
 filetype plugin on
 
 " Set the title line to the filename
-set title
-set titlestring+=%F
+set title titlestring=%F
 
 
 autocmd Filetype fortran let &colorcolumn=join(range(79,85),",")
@@ -96,11 +99,11 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
 
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " Python linter settings for python 3 forward compatability.
-let g:ale_python_pylint_options = '--py3k --enable=all'
+"let g:ale_python_pylint_options = '--py3k --enable=all'
 
