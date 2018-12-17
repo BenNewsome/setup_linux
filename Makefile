@@ -32,7 +32,8 @@ install_you_complete_me: update
 	(cd ./vim/pack/plugins/start/YouCompleteMe && python3 install.py --ts-completer)
 
 install_vim_plugins:
-	ln -s ./vim $(HOME)/.vim
+	rm -rf $(HOME)/.vim
+	ln -s $(PWD)/vim $(HOME)/.vim
 
 # Prepend the vim file with the vimrc file
 install_vimrc:
