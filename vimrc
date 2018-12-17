@@ -1,28 +1,28 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'ascenator/L9', {'name': 'newL9'}
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'alfredodeza/pytest.vim'
-"Plugin 'wookiehangover/jshint.vim'
-" Plugin 'tell-k/vim-autopep8'
-"Plugin 'vim-syntastic/syntastic'
-" Asyncronous linting
-Plugin 'w0rp/ale'
-
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+" set nocompatible              " be iMproved, required
+" filetype off                  " required
+" 
+" " set the runtime path to include Vundle and initialize
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" 
+" " let Vundle manage Vundle, required
+" Plugin 'VundleVim/Vundle.vim'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+" " Plugin 'Valloric/YouCompleteMe'
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'alfredodeza/pytest.vim'
+" "Plugin 'wookiehangover/jshint.vim'
+" " Plugin 'tell-k/vim-autopep8'
+" "Plugin 'vim-syntastic/syntastic'
+" " Asyncronous linting
+" Plugin 'w0rp/ale'
+" 
+" 
+" call vundle#end()            " required
+" filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -50,6 +50,10 @@ set background=dark
 
 filetype on
 filetype plugin on
+
+" Set the title line to the filename
+set title
+set titlestring+=%F
 
 
 autocmd Filetype fortran let &colorcolumn=join(range(79,85),",")
