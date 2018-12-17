@@ -1,3 +1,8 @@
+" Set the title line to the filename
+set ls=0
+set showtabline=2
+set tabline+=%F
+
 " set nocompatible              " be iMproved, required
 " filetype off                  " required
 " 
@@ -55,8 +60,6 @@ set background=dark
 filetype on
 filetype plugin on
 
-" Set the title line to the filename
-set title titlestring=%F
 
 
 autocmd Filetype fortran let &colorcolumn=join(range(79,85),",")
@@ -70,7 +73,7 @@ autocmd Filetype bib setlocal foldmethod=syntax
 syntax on
 
 " Match IF and ENDIF in fortran
-runtime macros/matchit.vim
+"runtime macros/matchit.vim
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -92,10 +95,10 @@ let fortran_do_enddo=1
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-set statusline+=%#warningmsg#
-set statusline+=%{ALEGetStatusLine()}
-set statusline+=%*
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+"set statusline+=%#warningmsg#
+"set statusline+=%{ALEGetStatusLine()}
+"set statusline+=%*
+"let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
 
 
