@@ -21,14 +21,13 @@ all: install update install_vim prepend_bashrc
 
 install_vim: install_vim_plugins install_vimrc
 
-install: install_vim prepent_bashrc prepend_vimrc
+install: install_vim prepend_bashrc
 
-
-
-update_vim_plugin_submodules:
+update:
+	git pull
 	git submodule update --init --recursive --remote
 
-install_you_complete_me: update_vim_plugin_submodules
+install_you_complete_me: update
 	sudo apt-get install build-essential cmake python3-dev
 	(cd ./vim/pack/plugins/start/YouCompleteMe && python3 install.py --ts-completer)
 
