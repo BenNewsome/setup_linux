@@ -13,23 +13,17 @@ MY_DEFAULTS=$(HOME)/.config/my_defaults
 VIMFILE=$(HOME)/.vimrc
 VIMVERSION:=$(shell vim --version | head -1 | grep -o '[0-9]\.[0-9]')
 VUNDLE:=$(HOME)/.vim/bundle/Vundle.vim
+PWD:=$(shell pwd)
 
 
-all: install update install_vim prepend_vimrc install_vundle prepend_bashrc
+all: install update install_vim prepend_bashrc
 	# This is the default
 
-vim: install_vim prepend_vimrc install_vindle
+install_vim: install_vim_plugins install_vimrc
 
-install:
-	# Confirm git is installed then pull the defaults.
-	#
-	if ! test -d $(MY_DEFAULTS); then \
-		command -v git >/dev/null 2>&1 || { echo >&2 "I require git but it's not installed.  Aborting."; exit 1; };  \
-		mkdir -p $(HOME)/.config; \
-		git clone https://github.com/BenNewsome/setup_linux.git $(MY_DEFAULTS); \
-	else \
-		echo "folder already installed"; \
-	fi
+install: install_vim prepent_bashrc prepend_vimrc
+
+
 
 update_vim_plugin_submodules:
 	git submodule update --init --recursive --remote
@@ -38,27 +32,22 @@ install_you_complete_me: update_vim_plugin_submodules
 	sudo apt-get install build-essential cmake python3-dev
 	(cd ./vim/pack/plugins/start/YouCompleteMe && python3 install.py --ts-completer)
 
-update:
-	cd $(MY_DEFAULTS) && git pull;
-
+install_vim_plugins:
+	ln -s ./vim $(HOME)/.vim
 
 # Prepend the vim file with the vimrc file
-prepend_vimrc:
-	FILELINE=$(shell head -n 1 $(VIMFILE) | tail -c 6 )
-	if ! [ "vimrc" = "$(shell head -n 1 $(VIMFILE) | tail -c 6 )" ]; then \
-		echo ":so $(MY_DEFAULTS)/vimrc" > tmp_file ;\
-		cat $(VIMFILE) >> tmp_file ;\
-		cp tmp_file $(VIMFILE) ;\
-		rm -f tmp_file ;\
-	fi
+install_vimrc:
+	rm -f $(HOME)/.vimrc; \
+	ln -s $(PWD)/vimrc $(HOME)/.vimrc; \
 
-install_vundle:
-	if ! test -d $(VUNDLE); then \
-		git clone https://github.com/VundleVim/Vundle.vim.git $(VUNDLE); \
-	else \
-		echo "Vundle is already installed"; \
-	fi
-	vim +PluginInstall +qall 
+#	FILELINE=$(shell head -n 1 $(VIMFILE) | tail -c 6 )
+#	if ! [ "vimrc" = "$(shell head -n 1 $(VIMFILE) | tail -c 6 )" ]; then \
+#		echo ":so $(MY_DEFAULTS)/vimrc" > tmp_file ;\
+#		cat $(VIMFILE) >> tmp_file ;\
+#		cp tmp_file $(VIMFILE) ;\
+#		rm -f tmp_file ;\
+#	fi
+
 
 check_vim_version:
 	# Ensure Vim8 is insalled
