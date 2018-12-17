@@ -79,15 +79,6 @@ autocmd FileType python nmap <F9> :!ipython %<cr>
 autocmd FileType python nmap <F10> :!py.test %<cr>
 autocmd FileType latex nmap <F9> :!make<cr>
 autocmd FileType tex nmap <F9> :!make<cr>
-" Show the filename in the terminal top info:
-let &titlestring = $USER . "@" . hostname() . " " . expand("%:p")
-if &term == "screen"
-  set t_ts=^[k
-  set t_fs=^[\
-endif
-  if &term == "screen" || &term == "xterm"
-    set title
-endif
 
 let fortran_gree_source=1
 let fortran_have_tabs=1
