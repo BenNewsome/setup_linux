@@ -31,6 +31,12 @@ install:
 		echo "folder already installed"; \
 	fi
 
+update_vim_plugin_submodules:
+	git submodule update --init --recursive --remote
+
+install_you_complete_me: update_vim_plugin_submodules
+	sudo apt-get install build-essential cmake python3-dev
+	(cd ./vim/pack/plugins/start/YouCompleteMe && python3 install.py --ts-completer)
 
 update:
 	cd $(MY_DEFAULTS) && git pull;
@@ -54,8 +60,8 @@ install_vundle:
 	fi
 	vim +PluginInstall +qall 
 
-install_vim:
-	# Install vim8 manually if not installed
+check_vim_version:
+	# Ensure Vim8 is insalled
 	if [ $(shell echo $(VIMVERSION) '<' 8.0 | bc -l ) = 1 ]; then \
 		 echo "VIM 8 is not installed and is needed"; \
 		 exit_the_script; \
